@@ -3,6 +3,9 @@ require "prawn"
 require "prawn/table"
 
 class ResumesController < ApplicationController
+  def home
+  end
+
   def new
   end
 
