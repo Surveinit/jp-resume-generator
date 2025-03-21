@@ -1,25 +1,159 @@
+<!-- app/views/resumes/new.html.erb -->
 <h2>日本の履歴書ジェネレーター</h2>
+
 <%= form_with url: resumes_path, method: :post, data: { turbo: false } do |f| %>
-  <label>名前:</label>
-  <%= f.text_field :name, required: true %><br>
-
-  <label>メール:</label>
-  <%= f.email_field :email %><br>
-
-  <label>電話番号:</label>
-  <%= f.text_field :phone %><br>
-
-  <label>住所:</label>
-  <%= f.text_area :address %><br>
-
-  <label>職務経歴:</label>
-  <%= f.text_area :work_experience %><br>
-
-  <label>学歴:</label>
-  <%= f.text_area :education %><br>
-
-  <label>自己PR:</label>
-  <%= f.text_area :self_introduction %><br>
-
-  <%= f.submit "履歴書を作成 (Generate Resume)" %>
+  <div class="form-section">
+    <h3>個人情報</h3>
+    
+    <div class="form-group">
+      <%= f.label :furigana, "ふりがな:" %>
+      <%= f.text_field :furigana, placeholder: "すずき はなこ", required: true %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :name, "名前:" %>
+      <%= f.text_field :name, placeholder: "鈴木 花子", required: true %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :birthdate, "生年月日:" %>
+      <%= f.text_field :birthdate, placeholder: "2000年 05月 10日生" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :age, "年齢:" %>
+      <%= f.number_field :age, placeholder: "22" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :gender, "性別:" %>
+      <%= f.select :gender, ["女性", "男性", "その他"] %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :postal_code, "郵便番号:" %>
+      <%= f.text_field :postal_code, placeholder: "100-0003" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :address_furigana, "ふりがな (住所):" %>
+      <%= f.text_field :address_furigana, placeholder: "とうきょうとちよだくひとつばし" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :address, "住所:" %>
+      <%= f.text_field :address, placeholder: "東京都千代区一ツ橋1-1-1" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :phone, "電話番号:" %>
+      <%= f.text_field :phone, placeholder: "050-0000-0000" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :email, "メールアドレス:" %>
+      <%= f.email_field :email, placeholder: "suzuki_pj@gmail.com" %>
+    </div>
+  </div>
+  
+  <div class="form-section">
+    <h3>学歴</h3>
+    <p class="hint">各行に「年 月 内容」の形式で入力してください。例: 2019 03 東京都立第一高等学校　卒業</p>
+    <%= f.text_area :education, rows: 5, placeholder: "2019 03 東京都立第一高等学校　卒業
+2019 04 第一大学　入学
+2023 03 第一大学　卒業見込み" %>
+  </div>
+  
+  <div class="form-section">
+    <h3>職歴</h3>
+    <p class="hint">各行に「年 月 内容」の形式で入力してください。例: 2019 04 個別指導東京塾　アルバイト入社</p>
+    <%= f.text_area :work_experience, rows: 5, placeholder: "2019 04 個別指導東京塾　アルバイト入社" %>
+  </div>
+  
+  <div class="form-section">
+    <h3>免許・資格</h3>
+    <p class="hint">各行に「年 月 内容」の形式で入力してください。例: 2020 05 普通自動車第一種運転免許　取得</p>
+    <%= f.text_area :qualifications, rows: 5, placeholder: "2020 05 普通自動車第一種運転免許　取得
+2022 02 秘書検定1級　取得
+2022 11 TOEICスコア900点　取得" %>
+  </div>
+  
+  <div class="form-section">
+    <h3>自己PR</h3>
+    <%= f.text_area :self_introduction, rows: 8, placeholder: "志望の動機、特技、アピールポイント、その他備考などを記入してください。" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :date, "日付:" %>
+    <%= f.text_field :date, value: Time.now.strftime("%Y年 %m月 %d日") %>
+  </div>
+  
+  <div class="form-submit">
+    <%= f.submit "履歴書を作成 (Generate Resume)" %>
+  </div>
 <% end %>
+
+<style>
+  .form-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .form-section h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .hint {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 0;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .form-submit {
+    margin-top: 20px;
+  }
+  
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+</style>
