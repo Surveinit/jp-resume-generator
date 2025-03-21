@@ -1,2 +1,25 @@
-<h1>Resumes#new</h1>
-<p>Find me in app/views/resumes/new.html.erb</p>
+<h2>日本の履歴書ジェネレーター</h2>
+<%= form_with url: resumes_path, method: :post do |f| %>
+  <label>名前:</label>
+  <%= f.text_field :name, required: true %><br>
+
+  <label>メール:</label>
+  <%= f.email_field :email %><br>
+
+  <label>電話番号:</label>
+  <%= f.text_field :phone %><br>
+
+  <label>住所:</label>
+  <%= f.text_area :address %><br>
+
+  <label>職務経歴:</label>
+  <%= f.text_area :work_experience %><br>
+
+  <label>学歴:</label>
+  <%= f.text_area :education %><br>
+
+  <label>自己PR:</label>
+  <%= f.text_area :self_introduction %><br>
+
+  <%= f.submit "履歴書を作成 (Generate Resume)" %>
+<% end %>
