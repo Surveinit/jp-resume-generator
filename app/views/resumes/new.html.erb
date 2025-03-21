@@ -1,5 +1,5 @@
 <h2>日本の履歴書ジェネレーター</h2>
-<%= form_with url: resumes_path, method: :post do |f| %>
+<%= form_with url: resumes_path, method: :post, data: { turbo: false } do |f| %>
   <label>名前:</label>
   <%= f.text_field :name, required: true %><br>
 
