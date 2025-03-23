@@ -18,7 +18,7 @@ class ResumesController < ApplicationController
       File.open(photo_path, "wb") { |file| file.write(uploaded_photo.read) }
     end
 
-    pdf = generate_pdf(params)
+    pdf = generate_pdf(params, photo_path)
     send_data(pdf, filename: "japanese_resume.pdf", type: "application/pdf", disposition: "attachment")
 
     File.delete(photo_path) if photo_path && File.exist?(photo_path)
@@ -26,7 +26,7 @@ class ResumesController < ApplicationController
 
   private
 
-  def generate_pdf(data)
+  def generate_pdf(data, photo_path)
     regular_font = Rails.root.join("app", "assets", "fonts", "NotoSansJP-Regular.ttf")
     bold_font = Rails.root.join("app", "assets", "fonts", "NotoSansJP-Bold.ttf")
 
@@ -58,31 +58,26 @@ class ResumesController < ApplicationController
           )
         end
 
-        # -- Photo box in the top-right corner --
-        photo_box_width = 100
-        photo_box_height = 120
+      # -- Photo box in the top-right corner --
+      photo_box_width = 100
+      photo_box_height = 120
 
-        # We'll draw the photo placeholder in the top-right corner (below the date)
-        pdf
-          .bounding_box(
-            [pdf.bounds.right - photo_box_width, pdf.cursor - 20],
-            width: photo_box_width,
-            height: photo_box_height
-          ) do
-            pdf.stroke_rectangle([0, photo_box_height], photo_box_width, photo_box_height)
-            pdf.text_box(
-              "写真貼付",
-              at: [0, photo_box_height - 15],
-              width: photo_box_width,
-              height: 15,
-              align: :center,
-              size: 10
-            )
-          end
+      if photo_path && File.exist?(photo_path)
+        pdf.image photo_path, at: [pdf.bounds.right - photo_box_width, pdf.cursor - 20], width: 100, height: 120
+      else
+        pdf.bounding_box(
+          [pdf.bounds.right - photo_box_width, pdf.cursor - 20],
+          width: photo_box_width,
+          height: photo_box_height
+        ) do
+          pdf.stroke_rectangle([0, photo_box_height], photo_box_width, photo_box_height)
+          pdf.text_box("写真貼付", at: [0, photo_box_height - 15], width: photo_box_width, height: 15, align: :center, size: 10)
+        end
+      end
 
         # Move the main cursor below the photo area to avoid overlap
         # We'll move down enough space to clear the photo placeholder
-        pdf.move_down(5)
+        pdf.move_down(150)
 
         # -- Personal Information Section --
 
