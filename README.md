@@ -1,3 +1,3 @@
 - [X] Photo support
-- [ ] Landing page
+- [X] Landing page
 
