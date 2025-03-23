@@ -1,3 +1,4 @@
 - [X] Photo support
 - [X] Landing page
 - [X] Responsive resume form
+- [ ] Favicon
