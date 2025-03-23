@@ -76,4 +76,16 @@ body {
 footer {
   margin-top: 24px;
 }
+
+@media (max-width: 945px) {
+  .showcase img:nth-child(n+2) { /* Hides all images except the first */
+    display: none;
+  }
+}
+
+@media (max-width: 1240px) {
+  .showcase img:last-child { /* Hides all images except the first */
+    display: none;
+  }
+}
 </style>
