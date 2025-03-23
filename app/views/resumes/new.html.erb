@@ -1,7 +1,7 @@
 <!-- app/views/resumes/new.html.erb -->
 <h2>日本の履歴書ジェネレーター</h2>
 
-<%= form_with url: resumes_path, method: :post, data: { turbo: false } do |f| %>
+<%= form_with url: resumes_path, method: :post, data: { turbo: false }, multipart: true do |f| %>
   <div class="form-section">
     <h3>個人情報</h3>
     
@@ -15,6 +15,11 @@
       <%= f.text_field :name, placeholder: "鈴木 花子", required: true %>
     </div>
     
+    <div class="form-group">
+      <%= f.label :photo, "写真アップロード:" %>
+      <%= f.file_field :photo, accept: "image/png, image/jpeg" %>
+    </div>
+
     <div class="form-group">
       <%= f.label :birthdate, "生年月日:" %>
       <%= f.text_field :birthdate, placeholder: "2000年 05月 10日生" %>
