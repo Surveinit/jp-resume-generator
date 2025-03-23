@@ -10,8 +10,18 @@ class ResumesController < ApplicationController
   end
 
   def create
+    uploaded_photo = params[:photo]
+    photo_path = nil
+
+    if uploaded_photo
+      photo_path = Rails.root.join("tmp", "uploaded_photo.jpg")
+      File.open(photo_path, "wb") { |file| file.write(uploaded_photo.read) }
+    end
+
     pdf = generate_pdf(params)
     send_data(pdf, filename: "japanese_resume.pdf", type: "application/pdf", disposition: "attachment")
+
+    File.delete(photo_path) if photo_path && File.exist?(photo_path)
   end
 
   private
