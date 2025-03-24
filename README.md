@@ -2,3 +2,4 @@
 - [X] Landing page
 - [X] Responsive resume form
 - [ ] Favicon
+- [ ] Use geist by vercel font.
