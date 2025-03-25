@@ -3,3 +3,4 @@
 - [X] Responsive resume form
 - [ ] Favicon
 - [ ] Use geist by vercel font.
+- [ ] Aesthetics like https://drive.google.com/file/d/12fhuVami3XXxbe1LWi9O2cnPRfLEFmi9/view?usp=drivesdk
