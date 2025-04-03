@@ -1,6 +1,40 @@
-- [X] Photo support
-- [X] Landing page
-- [X] Responsive resume form
-- [X] Favicon
-- [X] Use geist by vercel font.
-- [ ] Aesthetics like https://drive.google.com/file/d/12fhuVami3XXxbe1LWi9O2cnPRfLEFmi9/view?usp=drivesdk
+# 📃 JP Resume Generator 
+
+## Welcome to the JP Resume Generator! This web application enables users to create professional resumes easily and efficiently.
+
+### Live deploy 
+https://jp-resume-gen.onrender.com <br>
+⚠️ Note: Since Render pauses inactive services, it might take around 50 seconds to boot up.
+
+### Features
+
+   - No account creation.
+   - User-friendly interface for resume creation.
+   - Export resumes in PDF.
+
+### Run locally
+1. Clone this repository:
+```bash
+git clone https://github.com/Surveinit/jp-resume-generator
+```
+
+2. Change directory
+```bash
+cd jp-resume-generator 
+```
+
+3. Install the required gems:
+```bash
+bundle install
+```
+
+4. Run the Rails server:
+```bash
+rails server
+```
+5. Visit the app in your browser:
+```
+http://localhost:3000
+```
+
+#### ❤️ Thanks for reading!
