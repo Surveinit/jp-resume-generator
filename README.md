@@ -2,6 +2,9 @@
 
 ## Welcome to the JP Resume Generator! This web application enables users to create professional resumes easily and efficiently.
 
+### Sample
+![japanese-resume-3](https://github.com/user-attachments/assets/545f1113-ad24-41b7-9a3d-7e212423a224)
+
 ### Live deploy 
 https://jp-resume-gen.onrender.com <br>
 ⚠️ Note: Since Render pauses inactive services, it might take around 50 seconds to boot up.
@@ -11,6 +14,8 @@ https://jp-resume-gen.onrender.com <br>
    - No account creation.
    - User-friendly interface for resume creation.
    - Export resumes in PDF.
+
+---
 
 ### Run locally
 1. Clone this repository:
